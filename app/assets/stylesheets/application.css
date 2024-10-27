@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+.marginbottom20px {
+  margin-bottom: 20px;
+}
+
+.language-switch {
+  margin: 3px;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
