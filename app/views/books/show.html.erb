@@ -5,8 +5,8 @@
 </div>
 
 <div class="page-nav">
-  <%= link_to "Edit this book", edit_book_path(@book, locale: I18n.locale) %> |
-  <%= link_to "Back to books", books_path(locale: I18n.locale) %>
+  <%= link_to t('views.books.show.edit_book'), edit_book_path(@book, locale: I18n.locale) %> |
+  <%= link_to t('views.books.show.back_to_books'), books_path(locale: I18n.locale) %>
 
-  <%= button_to "Destroy this book", book_path(@book, locale: I18n.locale), method: :delete %>
+  <%= button_to t('views.books.show.destroy'), book_path(@book, locale: I18n.locale), method: :delete %>
 </div>
