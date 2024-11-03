@@ -25,7 +25,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to book_url(@book, locale: I18n.locale), notice: I18n.t('controllers.books.notice.create.success') }
+        format.html { redirect_to book_url(@book), notice: I18n.t('controllers.books.notice.create.success') }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to book_url(@book, locale: I18n.locale), notice: I18n.t('controllers.books.notice.update.success') }
+        format.html { redirect_to book_url(@book), notice: I18n.t('controllers.books.notice.update.success') }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit, status: :unprocessable_entity }
