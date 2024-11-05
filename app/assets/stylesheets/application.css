@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.language-switch-container {
+  padding: 5px;
+}
+
+.language-switch {
+  margin: 0 3px;
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+}
