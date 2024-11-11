@@ -1,0 +1,12 @@
+ja:
+  devise:
+    edit: 編集する
+    signup: アカウント登録
+    password_minimum: "%{count}文字以上"
+    comment:
+      leave_empty: 空欄のままなら変更しません
+      need_password: 変更を反映するには現在のパスワードを入力してください
+      unhappy: 気に入りません
+    cancel_account: アカウント削除
+    back: 戻る
+    home: ホームへ
