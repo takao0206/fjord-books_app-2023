@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if current_user == @user
       redirect_to edit_user_registration_path
     else
-      flash[:alert] = '編集できません。編集したいユーザーでログインし直してください。'
+      flash[:alert] = t('controllers.common.alert_edit_user', name: @user.email)
       redirect_to user_path(@user)
     end
   end
