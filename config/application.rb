@@ -20,3 +20,10 @@ module BooksApp
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
+
+module TimeFormatSandbox
+  class Application < Rails::Application
+    config.time_zone = 'Asia/Tokyo'
+    config.i18n.default_locale = :ja
+  end
+end

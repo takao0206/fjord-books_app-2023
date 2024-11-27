@@ -1,4 +1,4 @@
-<h2><%= t('devise.signup') %></h2>
+<h2><%= t('.sign_up') %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -8,25 +8,25 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-<div class="field">
-  <%= f.label :postal_code %>
-  <%= f.text_field :postal_code %>
-</div>
+  <div class="field">
+    <%= f.label :postal_code %>
+    <%= f.text_field :postal_code %>
+  </div>
 
-<div class="field">
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-</div>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
 
-<div class="field">
-  <%= f.label :self_introduction %>
-  <%= f.text_area :self_introduction %>
-</div>
+  <div class="field">
+    <%= f.label :self_introduction %>
+    <%= f.text_area :self_introduction %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= t('devise.password_minimum', count: @minimum_password_length) %>)</em>
+    <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
@@ -43,4 +43,4 @@
 
 <%= render "devise/shared/links" %>
 
-<%= link_to t('devise.home'), root_path %>
+<%= link_to t('devise.shared.links.back'), '#', onclick: 'history.back(); return false;' %>
