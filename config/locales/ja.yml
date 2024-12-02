@@ -216,3 +216,11 @@ ja:
     registrations:
       edit:
         title: "アカウント編集"
+        avatar: アイコン画像
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            avatar:
+              invalid: "はJPG, PNG, GIF形式の画像のみアップロードできます"
