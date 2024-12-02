@@ -2,6 +2,7 @@
 
 class ReportsController < ApplicationController
   before_action :set_report, only: %i[show edit update destroy]
+  before_action :check_report_owner, only: %i[edit update destroy]
 
   def index
     @reports = Report.order(:id).page(params[:page])
@@ -10,13 +11,13 @@ class ReportsController < ApplicationController
   def show; end
 
   def new
-    @report = Report.new
+    @report = current_user.reports.build
   end
 
   def edit; end
 
   def create
-    @report = Report.new(report_params)
+    @report = current_user.reports.build(report_params)
     if @report.save
       redirect_to @report, notice: t('controllers.common.notice_create', name: Report.model_name.human)
     else
@@ -45,5 +46,11 @@ class ReportsController < ApplicationController
 
   def report_params
     params.require(:report).permit(:title, :content)
+  end
+
+  def check_report_owner
+    return if @report.user == current_user
+
+    redirect_to reports_path
   end
 end
