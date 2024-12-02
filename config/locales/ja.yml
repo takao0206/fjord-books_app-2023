@@ -7,6 +7,11 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+      models:
+        user:
+          attributes:
+            postal_code:
+              invalid: "は XXX-XXXX の形式で入力してください"
   date:
     abbr_day_names:
     - 日
@@ -194,6 +199,10 @@ ja:
       title_edit: "%{name}の編集"
       error: エラー
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
+      signup: アカウント登録
+      login: ログイン
+      logout: ログアウト
+      welcome: "ようこそ %{name}"
     pagination:
       first: '« 最初'
       last: '最後 »'
@@ -205,3 +214,4 @@ ja:
       notice_create: "%{name}が作成されました。"
       notice_update: "%{name}が更新されました。"
       notice_destroy: "%{name}が削除されました。"
+      alert_edit_user: "編集できません。%{name}でログインし直してください。"
