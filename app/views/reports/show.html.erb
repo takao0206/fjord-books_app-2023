@@ -4,6 +4,22 @@
   <%= render @report %>
 </div>
 
+<div class="mentions-container">
+  <strong><%= Mention.model_name.human %>:</strong>
+  <% if @report.mentioning_reports.any? %>
+    <ul>
+      <% @report.mentioning_reports.each do |mentioning_report| %>
+        <li>
+          <%= link_to mentioning_report.title, report_path(mentioning_report) %>
+          - <%= t('datetime.time_ago', time: distance_of_time_in_words(mentioning_report.created_at, Time.current)) %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    (<%= t('views.common.no_link_yet') %>)
+  <% end %>
+</div>
+
 <%= render 'shared/comments', commentable: @report %>
 
 <nav class="page-nav">

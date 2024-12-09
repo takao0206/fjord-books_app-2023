@@ -1,0 +1,22 @@
+/****************
+mentions-container
+****************/
+
+.mentions-container {
+    margin-top: 32px;
+    max-width: var(--single-column-w);
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 16px;
+}
+
+.mentions-container ul {
+    margin: 12px 0 0;
+    padding-inline-start: 0;
+    list-style: none;
+}
+
+.mentions-container li {
+    padding-bottom: 12px;
+    font-size: var(--global-fz-md);
+    line-height: 1.8;
+}

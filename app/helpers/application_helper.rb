@@ -18,4 +18,9 @@ module ApplicationHelper
   def format_content(content)
     safe_join(content.split("\n"), tag.br)
   end
+
+  def auto_link_content(content)
+    formatted_content = format_content(content)
+    formatted_content.gsub(URI::DEFAULT_PARSER.make_regexp) { |url| "<a href='#{url}' target='_blank'>#{url}</a>" }
+  end
 end
