@@ -45,14 +45,6 @@ class CommentsController < ApplicationController
     redirect_to root_path
   end
 
-  def find_commentable
-    if params[:book_id]
-      Book.find(params[:book_id])
-    elsif params[:report_id]
-      Report.find(params[:report_id])
-    end
-  end
-
   def comment_params
     params.require(:comment).permit(:content)
   end
