@@ -4,7 +4,7 @@
     <ul>
       <% commentable.comments.each do |comment| %>
         <li class="comment-list">
-          <strong><%= comment.user.name.presence || comment.user.email %></strong> - <%= l comment.created_at, format: :long %>
+          <strong><%= comment.user.display_name %></strong> - <%= l comment.created_at, format: :long %>
           <div class="comment-list-content">
             <%= comment.content %>
           </div>
