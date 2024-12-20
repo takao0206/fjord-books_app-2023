@@ -8,7 +8,9 @@ class ReportsController < ApplicationController
     @reports = Report.order(:id).page(params[:page])
   end
 
-  def show; end
+  def show
+    @comment = current_user.comments.build(commentable: @report)
+  end
 
   def new
     @report = current_user.reports.build
