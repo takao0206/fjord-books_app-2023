@@ -27,7 +27,7 @@ class Report < ApplicationRecord
   def update_mentions
     mentions_as_mentioned.destroy_all
 
-    mentioning_report_ids = content.scan(%r{http://(?:localhost|127\.0\.0\.1):3000/reports/(\d+)}).map(&:first).uniq
+    mentioning_report_ids = content.scan(%r{http://(?:localhost|127\.0\.0\.1):3000/reports/(\d+)}).map(&:first)
     mentioning_report_ids.each do |mentioning_report_id|
       Mention.create(mentioned_report: self, mentioning_report_id:) if Report.exists?(mentioning_report_id)
     end
