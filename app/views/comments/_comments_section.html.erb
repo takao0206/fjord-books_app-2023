@@ -2,7 +2,7 @@
   <h2><%= t('views.common.title_index', name: Comment.model_name.human) %></h2>
   <% if commentable.comments.exists? %>
     <ul>
-      <% commentable.comments.each do |comment| %>
+      <% commentable.comments.order(created_at: :asc).each do |comment| %>
         <li class="comment-list">
           <strong><%= comment.user.display_name %></strong> - <%= l comment.created_at, format: :long %>
           <div class="comment-list-content">
