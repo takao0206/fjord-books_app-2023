@@ -5,6 +5,20 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
+  def create
+    @commentable = find_commentable
+    @comment = @commentable.comments.build(comment_params)
+    @comment.user = current_user
+
+    if @comment.save
+      redirect_to @commentable, notice: t('controllers.common.notice_create', name: Comment.model_name.human)
+    else
+      flash[:alert] = @comment.errors.full_messages.first
+      set_commentable
+      render template_for_show, status: :unprocessable_entity
+    end
+  end
+
   def edit; end
 
   def update
@@ -35,5 +49,17 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def find_commentable
+    raise NotImplementedError, "#{__method__} メソッドは子クラスで実装してください。"
+  end
+
+  def set_commentable
+    raise NotImplementedError, "#{__method__} メソッドは子クラスで実装してください。"
+  end
+
+  def template_for_show
+    raise NotImplementedError, "#{__method__} メソッドは子クラスで実装してください。"
   end
 end
