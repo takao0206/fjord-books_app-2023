@@ -2,11 +2,11 @@
 
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_commentable, only: %i[create edit update]
   before_action :set_comment, only: %i[edit update destroy]
   before_action :authorize_user!, only: %i[edit update destroy]
 
   def create
-    @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params)
     @comment.user = current_user
 
@@ -31,8 +31,16 @@ class CommentsController < ApplicationController
 
   def destroy
     @commentable = @comment.commentable
-    @comment.destroy
-    redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
+
+    begin
+      @comment.destroy!
+      redirect_to @commentable, notice: t('controllers.common.notice_destroy', name: Comment.model_name.human)
+    rescue ActiveRecord::RecordNotDestroyed => e
+      flash[:alert] = e.message
+      set_commentable
+      @comment = Comment.new
+      render template_for_show, status: :unprocessable_entity
+    end
   end
 
   private

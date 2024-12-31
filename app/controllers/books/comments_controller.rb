@@ -4,11 +4,11 @@ class Books::CommentsController < CommentsController
   private
 
   def find_commentable
-    Book.find(params[:book_id])
+    @commentable = Book.find(params[:book_id])
   end
 
   def set_commentable
-    @book = find_commentable
+    @book = @commentable
   end
 
   def template_for_show

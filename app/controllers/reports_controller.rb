@@ -36,8 +36,12 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    @report.destroy
+    @report.destroy!
     redirect_to reports_path, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
+  rescue ActiveRecord::RecordNotDestroyed => e
+    flash[:alert] = e.message
+    @comment = Comment.new
+    render :show, status: :unprocessable_entity
   end
 
   private
