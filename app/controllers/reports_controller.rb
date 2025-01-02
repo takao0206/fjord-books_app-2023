@@ -8,9 +8,7 @@ class ReportsController < ApplicationController
     @reports = Report.order(:id).page(params[:page])
   end
 
-  def show
-    @comment = current_user.comments.build(commentable: @report)
-  end
+  def show; end
 
   def new
     @report = current_user.reports.build
@@ -40,7 +38,6 @@ class ReportsController < ApplicationController
     redirect_to reports_path, notice: t('controllers.common.notice_destroy', name: Report.model_name.human)
   rescue ActiveRecord::RecordNotDestroyed => e
     flash[:alert] = e.message
-    @comment = Comment.new
     render :show, status: :unprocessable_entity
   end
 

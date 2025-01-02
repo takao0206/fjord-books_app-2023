@@ -38,7 +38,6 @@ class CommentsController < ApplicationController
     rescue ActiveRecord::RecordNotDestroyed => e
       flash[:alert] = e.message
       set_commentable
-      @comment = Comment.new
       render template_for_show, status: :unprocessable_entity
     end
   end
