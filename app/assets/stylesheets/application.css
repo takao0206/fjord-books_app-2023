@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.comment-list {
+  margin-bottom: 30px;
+}
+
+.comment-list-content {
+  margin-bottom: 10px;
+}
+
+.comment-list-link {
+  font-size: 0.9em;
+}

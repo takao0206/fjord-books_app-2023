@@ -1,0 +1,34 @@
+<div>
+  <h2><%= t('views.common.title_index', name: Comment.model_name.human) %></h2>
+  <% if commentable.comments.exists? %>
+    <ul>
+      <% commentable.comments.order(created_at: :asc).each do |comment| %>
+        <li class="comment-list">
+          <strong><%= comment.user.display_name %></strong> - <%= l comment.created_at, format: :long %>
+          <div class="comment-list-content">
+            <%= comment.content %>
+          </div>
+          <% if comment.user == current_user %>
+            <div class="comment-list-link">
+              <%= link_to t('views.common.edit', name: Comment.model_name.human.downcase), edit_polymorphic_path([comment.commentable, comment]) %>
+              <%= button_to t('views.common.destroy', name: Comment.model_name.human.downcase), polymorphic_path([comment.commentable, comment]), method: :delete, class: "comment-list-link" %>
+            </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p><%= t('views.comments.no_comment') %></p>
+  <% end %>
+</div>
+<div>
+  <%= form_with model: [commentable, Comment.new], local: true do |form| %>
+    <div>
+      <%= form.label :content, t('views.common.new', name: Comment.model_name.human.downcase) %>
+      <%= form.text_area :content, required: true, placeholder: t('views.comments.placeholder') %>
+    </div>
+    <div>
+      <%= form.submit %>
+    </div>
+  <% end %>
+</div>
