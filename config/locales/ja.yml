@@ -82,6 +82,7 @@ ja:
       day: 日
       month: 月
       year: 年
+    time_ago: "%{time}前"
   errors:
     format: "%{attribute}%{message}"
     messages:
@@ -196,6 +197,7 @@ ja:
       validation_error: "%{errors}があるため、この%{name}は保存できませんでした"
       title_show: "%{name}の詳細"
       sign_out: ログアウト
+      no_link_yet: リンクはまだありません
     pagination:
       first: '« 最初'
       last: '最後 »'
