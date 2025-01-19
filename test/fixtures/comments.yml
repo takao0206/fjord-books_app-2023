@@ -4,4 +4,4 @@ alice:
   user: alice
   commentable: one
   commentable_type: Commentable
-  content: Good
+  content: "日報の共有、ありがとうございます。\nもし具体的な方法があれば教えていただけると嬉しいです。"

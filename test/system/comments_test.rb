@@ -31,7 +31,7 @@ class CommentsTest < ApplicationSystemTestCase
     assert_css 'h1', text: '本の一覧'
 
     visit report_url(@report)
-    assert_text 'Test comment'
+    assert_match(/日報の共有ありがとうございます。\s私も似たような課題に直面しているので、\s進め方や工夫された点について非常に参考になりました。/, page.text)
 
     accept_confirm do
       click_on '削除', match: :first

@@ -26,14 +26,14 @@ class BooksTest < ApplicationSystemTestCase
 
     click_on '本の新規作成'
 
-    fill_in 'タイトル', with: 'バナナの本'
-    fill_in 'メモ', with: 'バナナのメモ'
+    fill_in 'タイトル', with: 'バナナの不思議な旅'
+    fill_in 'メモ', with: "南国の果物バナナの栽培から\n輸送までを探る。"
     fill_in '著者', with: 'Alice'
     click_button '登録する'
 
     assert_text '本が作成されました。'
-    assert_text 'バナナの本'
-    assert_text 'バナナのメモ'
+    assert_text 'バナナの不思議な旅'
+    assert_match(/南国の果物バナナの栽培から\s輸送までを探る/, page.text)
     assert_text 'Alice'
     click_on '本の一覧に戻る'
   end
@@ -45,14 +45,15 @@ class BooksTest < ApplicationSystemTestCase
     visit book_url(@book)
     click_on 'この本を編集', match: :first
 
-    fill_in 'タイトル', with: 'チェリーの本'
-    fill_in 'メモ', with: 'チェリーのメモ'
+    fill_in 'タイトル', with: 'チェリーの物語'
+    fill_in 'メモ', with: "さくらんぼの栽培と\n甘酸っぱい魅力を\n紐解くエッセイ。"
     fill_in '著者', with: 'Bob'
     click_button '更新する'
 
     assert_text '本が更新されました。'
-    assert_text 'チェリーの本'
-    assert_text 'チェリーのメモ'
+    assert_text 'チェリーの物語'
+    assert_match(/さくらんぼの栽培と\s甘酸っぱい魅力を\s紐解くエッセイ。/, page.text)
+
     assert_text 'Bob'
     click_on '本の一覧に戻る'
   end

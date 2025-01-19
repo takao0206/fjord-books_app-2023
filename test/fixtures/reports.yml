@@ -2,10 +2,10 @@
 
 alice:
   user: alice
-  title: Alice report
-  content: AAA
+  title: RailsでAPIの設計を学ぶ
+  content: "今日はRailsを使ったAPI設計について学びました。\n基本的なCRUD操作ができるようになりました。\n次回は認証機能の実装に挑戦したいと思います。"
 
 bob:
   user: bob
-  title: Bob report
-  content: BBB
+  title: RSpecでのテスト駆動開発
+  content: "RSpecを使って、テスト駆動開発の基本を学びました。\nまだテストの書き方に不安がありますが、\nテストの重要性はしっかりと理解できました。"
