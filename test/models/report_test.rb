@@ -7,6 +7,13 @@ class ReportTest < ActiveSupport::TestCase
     @alice = users(:alice)
     @alice_report = reports(:alice)
     @bob_report = reports(:bob)
+    @carol = FactoryBot.create(:user, :carol)
+    @carol_report = FactoryBot.create(
+      :report,
+      user: @carol,
+      title: 'バグ修正',
+      content: "本日行った作業: \nユーザー認証のバクを修正。\nCheck this link: http://localhost:3000/reports/#{@alice_report.id}"
+    )
   end
 
   test 'not update a report without a title' do
@@ -33,5 +40,21 @@ class ReportTest < ActiveSupport::TestCase
 
     assert_equal 1, @alice_report.active_mentions.count, 'There should be one active mention'
     assert_includes @alice_report.mentioning_reports, @bob_report
+  end
+
+  test '"save_mentions" updates mentions for valid report links' do
+    @carol_report.update(content: "本日行った作業: \nユーザー認証のバクを修正。\nCheck this link: http://localhost:3000/reports/#{@bob_report.id}")
+    @carol_report.reload
+
+    assert_not_includes @carol_report.mentioning_reports, @alice_report
+    assert_includes @carol_report.mentioning_reports, @bob_report
+  end
+
+  test '"save_mentions" removes a mention when the report is destroyed' do
+    assert_includes @carol_report.mentioning_reports, @alice_report
+    @alice_report.destroy
+    @carol_report.reload
+
+    assert_not_includes @carol_report.mentioning_reports, @alice_report
   end
 end
