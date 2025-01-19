@@ -24,10 +24,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'name or email' do
-    @alice.name = nil
-    assert_equal @alice.email, @alice.name_or_email
+    @bob = User.new(email: 'bob@example.com')
+    assert_equal 'bob@example.com', @bob.name_or_email
 
-    @alice.name = 'Dave'
-    assert_equal @alice.name, @alice.name_or_email
+    @bob.name = 'Bob'
+    assert_equal 'Bob', @bob.name_or_email
   end
 end
