@@ -31,7 +31,10 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '"created_on" is as same as the created date' do
-    assert_equal @alice_report.created_at.to_date, @alice_report.created_on
+    created_day = Date.new(2025, 1, 19)
+    @carol_report = FactoryBot.create(:report, user: @carol, created_at: created_day)
+
+    assert_equal created_day, @carol_report.created_on
   end
 
   test '"save_mentions" creates mentions for valid report links' do
