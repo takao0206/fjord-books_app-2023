@@ -14,6 +14,16 @@ class CommentsTest < ApplicationSystemTestCase
     click_button 'ログイン'
   end
 
+  test 'should display "コメントがありません" when no comments' do
+    # ログイン後のページ遷移完了を待つため
+    assert_css 'h1', text: '本の一覧'
+
+    dave = FactoryBot.create(:user, :dave)
+    dave_report = FactoryBot.create(:report, user: dave)
+    visit report_url(dave_report)
+    assert_text 'コメントはまだありません'
+  end
+
   test 'should create comment' do
     # ログイン後のページ遷移完了を待つため
     assert_css 'h1', text: '本の一覧'
