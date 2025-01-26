@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   setup do
-    @alice = users(:alice)
+    @alice = FactoryBot.create(:user, :alice)
   end
 
   test 'user has many reports' do

@@ -4,7 +4,7 @@ require 'test_helper'
 
 class UsersHelperTest < ActionView::TestCase
   setup do
-    @user = users(:alice)
+    @user = FactoryBot.create(:user, :alice)
   end
 
   test 'current_user_name returns value' do

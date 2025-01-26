@@ -4,9 +4,11 @@ require 'test_helper'
 
 class ReportMentionTest < ActiveSupport::TestCase
   def setup
-    @alice_report = reports(:alice)
-    @bob_report = reports(:bob)
-    @alice_mention = report_mentions(:alice)
+    alice = FactoryBot.create(:user, :alice)
+    bob = FactoryBot.create(:user, :bob)
+    @alice_report = FactoryBot.create(:report, :alice, user: alice)
+    @bob_report = FactoryBot.create(:report, :bob, user: bob)
+    @alice_mention = FactoryBot.create(:report_mention, mentioning: @bob_report, mentioned: @alice_report)
   end
 
   test 'have valid belongings' do

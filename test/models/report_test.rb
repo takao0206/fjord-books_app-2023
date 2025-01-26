@@ -4,9 +4,10 @@ require 'test_helper'
 
 class ReportTest < ActiveSupport::TestCase
   setup do
-    @alice = users(:alice)
-    @alice_report = reports(:alice)
-    @bob_report = reports(:bob)
+    @alice = FactoryBot.create(:user, :alice)
+    @alice_report = FactoryBot.create(:report, user: @alice)
+    bob = FactoryBot.create(:user, :bob)
+    @bob_report = FactoryBot.create(:report, user: bob)
     @carol = FactoryBot.create(:user, :carol)
     @carol_report = FactoryBot.create(
       :report,

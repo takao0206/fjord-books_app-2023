@@ -1,7 +1,0 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-alice:
-  user: alice
-  commentable: one
-  commentable_type: Commentable
-  content: "日報の共有、ありがとうございます。\nもし具体的な方法があれば教えていただけると嬉しいです。"
