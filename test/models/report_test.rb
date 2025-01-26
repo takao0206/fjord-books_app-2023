@@ -32,10 +32,11 @@ class ReportTest < ActiveSupport::TestCase
   end
 
   test '"created_on" is as same as the created date' do
-    created_day = Date.new(2025, 1, 19)
-    @carol_report = FactoryBot.create(:report, user: @carol, created_at: created_day)
+    created_time = Time.zone.local(2025, 1, 26, 17, 10)
+    @carol_report = FactoryBot.create(:report, user: @carol, created_at: created_time)
 
-    assert_equal created_day, @carol_report.created_on
+    assert_equal created_time, @carol_report.created_at
+    assert_equal created_time.to_date, @carol_report.created_on
   end
 
   test '"save_mentions" creates mentions for valid report links' do
