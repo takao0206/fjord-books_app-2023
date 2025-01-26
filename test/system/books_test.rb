@@ -4,6 +4,7 @@ require 'application_system_test_case'
 
 class BooksTest < ApplicationSystemTestCase
   setup do
+    @user = FactoryBot.create(:user, email: 'alice@example.com', password: 'password')
     @book = FactoryBot.create(:book)
 
     visit root_url
